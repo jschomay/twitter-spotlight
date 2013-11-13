@@ -1,0 +1,17 @@
+{
+  "name": "twitter_spotlight",
+  "version": "0.0.0",
+  "description": "See the tweets in your timeline that matter most",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Jeff Schomay",
+  "dependencies": {
+    "oauth": "*",
+    "express": "3.1.0",
+    "node-monkey": "~0.2.8"
+  },
+  "readmeFilename": "README.md",
+}
