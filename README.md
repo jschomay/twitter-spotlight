@@ -7,7 +7,7 @@ _Intelligently emphasize the tweets on your twitter timeline that matter most to
 
 
  The idea
- --------
+ ------------
  
  Twitter is great, but it's hard to keep up with all the tweets that keep popping up on your timeline.  Sometimes tweets that I care about get lost in the mix of other tweets from people that I want to follow, but am less focused on at the time.  
  
@@ -21,7 +21,7 @@ _Intelligently emphasize the tweets on your twitter timeline that matter most to
 
 
  Execution/Algorithm
- ---------
+ -------------------
  
  As far as the Twitter client functionality, I'm just doing the bare minimum with node.js (using the oAuth npm module) and backbone on the front end to authenticate with Twitter, load the data I need, and build a simple home feed view.  Since my focus is on the spotlight functionality, I'm not spending much time making awesome twitter client features.
  
