@@ -6,24 +6,24 @@ Twitter Timeline Spotlight
 _Intelligently emphasize the tweets on your twitter timeline that matter most to you, based on your recent behavior_
 
 
- The idea
- ------------
+The idea
+------------
  
- Twitter is great, but it's hard to keep up with all the tweets that keep popping up on your timeline.  Sometimes tweets that I care about get lost in the mix of other tweets from people that I want to follow, but am less focused on at the time.  
+Twitter is great, but it's hard to keep up with all the tweets that keep popping up on your timeline.  Sometimes tweets that I care about get lost in the mix of other tweets from people that I want to follow, but am less focused on at the time.  
  
- Sure, I could create lists based on people, hashtags, and searches, and I could use another app/site that lets me see different lists at different times in different ways, but I want something a little simpler, and more integrated.  And I want it to work automatically, and intelligently, base on my behavior.
+Sure, I could create lists based on people, hashtags, and searches, and I could use another app/site that lets me see different lists at different times in different ways, but I want something a little simpler, and more integrated.  And I want it to work automatically, and intelligently, base on my behavior.
  
- Enter Twitter Timeline Spotlight.  It does two things:
+Enter Twitter Timeline Spotlight.  It does two things:
 
- 1. __"Smart list"__ - by analyzing your recent tweets, interactions, and connections, the algorithm determines what tweets you will be most interested in.
+1. __"Smart list"__ - by analyzing your recent tweets, interactions, and connections, the algorithm determines what tweets you will be most interested in.
 
- 2. __"Spotlight view"__ - modifies your normal home timeline, leaving tweets that match your smart list untouched, but shrinking all the other tweets to single truncated lines with minimized profile pictures.  This way you can still see all the tweets in your feed (and expand any minimized tweets), but the tweets you care about stick out.
+2. __"Spotlight view"__ - modifies your normal home timeline, leaving tweets that match your smart list untouched, but shrinking all the other tweets to single truncated lines with minimized profile pictures.  This way you can still see all the tweets in your feed (and expand any minimized tweets), but the tweets you care about stick out.
 
 
- Execution/Algorithm
- -------------------
+Execution/Algorithm
+-------------------
  
- As far as the Twitter client functionality, I'm just doing the bare minimum with node.js (using the oAuth npm module) and backbone on the front end to authenticate with Twitter, load the data I need, and build a simple home feed view.  Since my focus is on the spotlight functionality, I'm not spending much time making awesome twitter client features.
+As far as the Twitter client functionality, I'm just doing the bare minimum with node.js (using the oAuth npm module) and backbone on the front end to authenticate with Twitter, load the data I need, and build a simple home feed view.  Since my focus is on the spotlight functionality, I'm not spending much time making awesome twitter client features.
  
 Smart list/spotlighted tweets:
 - Top 3 tweets on your timeline always expanded (to see what is freshest, unfiltered)
