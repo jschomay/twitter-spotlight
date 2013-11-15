@@ -1,10 +1,10 @@
 var privateConfig = require('./private-config'),
     OAuth         = require('oauth').OAuth,
+    util          = require('util'),
     express       = require('express'),
     app           = express();
-
-// pipe console log to browser
-// require('node-monkey').start();
+    // pipe console log to browser
+    require('node-monkey').start();
 
 
 var oa = new OAuth(
@@ -40,7 +40,18 @@ app.configure('development', function(){
 
 
 app.get('/', authBounce, function(req, res){
-  res.send("Welcome to Twitter Timeline Spotlight, looks like you're logged in as @"+req.session.screen_name);
+  console.log('calling twitter api...');
+  twitterApiCallTest(req, function(error, data) {
+    if (error) {
+      util.puts('Error calling twitter api', util.inspect(error));
+      res.send('Got an error :(');
+    }
+    else {
+      // util.puts('data from twitterApiCallTest', util.inspect(JSON.parse(data)));
+      console.log('data from twitterApiCallTest', JSON.parse(data));
+      res.send("Welcome to Twitter Timeline Spotlight, looks like you're logged in as @"+req.session.screen_name+'<br><br>Here\'s your data:<br><br>'+data);
+    }
+  });
 });
 
 app.get('/login', function(req, res){
@@ -100,13 +111,21 @@ function authBounce(req, res, next){
    }
   else {
     console.log("No access token found, go to log in");
-    res.redirect('/login');
+    // res.redirect('/login'); // uncoment and remove next line to show sign in button page
+    res.redirect('/auth/twitter');
   }
 }
 
 function loggedIn(req) {
   return (req.session.oauth && req.session.oauth.access_token);
 }
+
+function twitterApiCallTest(req, cb) {
+  oa.get("https://api.twitter.com/1.1/statuses/retweets_of_me.json", req.session.oauth.access_token, req.session.oauth.access_token_secret, function(error, data) {
+    cb(error, data);
+  });
+}
+
 
 app.listen(3000);
 console.log('Listening on port 3000');
