@@ -3,6 +3,10 @@ var privateConfig = require('./private-config'),
     express       = require('express'),
     app           = express();
 
+// pipe console log to browser
+// require('node-monkey').start();
+
+
 var oa = new OAuth(
   "https://api.twitter.com/oauth/request_token",
   "https://api.twitter.com/oauth/access_token",
@@ -33,8 +37,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', function(req, res){
-  res.redirect('/auth/twitter');
+
+
+app.get('/', authBounce, function(req, res){
+  res.send("Hello, looks like you're logged in as @"+req.session.screen_name);
 });
 
 app.get('/auth/twitter', function(req, res){
@@ -67,13 +73,27 @@ app.get('/auth/twitter/callback', function(req, res, next){
       } else {
         req.session.oauth.access_token = oauth_access_token;
         req.session.oauth.access_token_secret = oauth_access_token_secret;
+        req.session.screen_name = results.screen_name;
         console.log(results);
-        res.send("Hello @"+results.screen_name);
+        res.redirect('/');
       }
     }
     );
   } else
     next(new Error("you're not supposed to be here."));
 });
+
+function authBounce(req, res, next){
+  // console.log(req.session);
+  if(req.session.oauth && req.session.oauth.access_token){
+    console.log("Logged in as", req.session.screen_name);
+    next();
+   }
+  else {
+    console.log("No access token found, go to log in");
+    res.redirect('/auth/twitter');
+  }
+}
+
 app.listen(3000);
 console.log('Listening on port 3000');
