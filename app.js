@@ -40,22 +40,21 @@ app.configure('development', function(){
 
 
 app.get('/', authBounce, function(req, res){
-  console.log('calling twitter api...');
-  twitterApiCallTest(req, function(error, data) {
+  callTwitterApi('statuses/retweets_of_me.json', null, req, function(error, data) {
     if (error) {
-      util.puts('Error calling twitter api', util.inspect(error));
-      res.send('Got an error :(');
+      util.error('Error calling twitter api', util.inspect(error));
+      res.send('Got an error when trying to talk to twitter :(');
     }
     else {
-      // util.puts('data from twitterApiCallTest', util.inspect(JSON.parse(data)));
-      console.log('data from twitterApiCallTest', JSON.parse(data));
+      // util.puts('data from callTwitterApi', util.inspect(JSON.parse(data)));
+      console.log('data from callTwitterApi', JSON.parse(data)); // inspect in browser (via node-monkey)
       res.send("Welcome to Twitter Timeline Spotlight, looks like you're logged in as @"+req.session.screen_name+'<br><br>Here\'s your data:<br><br>'+data);
     }
   });
 });
 
 app.get('/login', function(req, res){
-  if (loggedIn(req)){
+  if (isLoggedIn(req)){
     res.redirect('/');
   }
   else {
@@ -66,15 +65,15 @@ app.get('/login', function(req, res){
 app.get('/auth/twitter', function(req, res){
   oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
     if (error) {
-      console.log(error);
+      util.puts(error);
       res.send("yeah no. didn't work.");
     }
     else {
       req.session.oauth = {};
       req.session.oauth.token = oauth_token;
-      console.log('oauth.token: ' + req.session.oauth.token);
+      util.puts('oauth.token: ' + req.session.oauth.token);
       req.session.oauth.token_secret = oauth_token_secret;
-      console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
+      util.puts('oauth.token_secret: ' + req.session.oauth.token_secret);
       res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token);
   }
   });
@@ -88,7 +87,7 @@ app.get('/auth/twitter/callback', function(req, res, next){
     oa.getOAuthAccessToken(oauth.token,oauth.token_secret,oauth.verifier,
     function(error, oauth_access_token, oauth_access_token_secret, results){
       if (error){
-        console.log(error);
+        util.puts(error);
         res.send("yeah something broke.");
       } else {
         req.session.oauth.access_token = oauth_access_token;
@@ -105,27 +104,32 @@ app.get('/auth/twitter/callback', function(req, res, next){
 
 function authBounce(req, res, next){
   // console.log(req.session);
-  if(loggedIn(req)){
+  if(isLoggedIn(req)){
     console.log("Logged in as", req.session.screen_name);
     next();
    }
   else {
     console.log("No access token found, go to log in");
-    // res.redirect('/login'); // uncoment and remove next line to show sign in button page
+    // res.redirect('/login'); // uncoment and remove next line to show sign in page
     res.redirect('/auth/twitter');
   }
 }
 
-function loggedIn(req) {
+function isLoggedIn(req) {
   return (req.session.oauth && req.session.oauth.access_token);
 }
 
-function twitterApiCallTest(req, cb) {
-  oa.get("https://api.twitter.com/1.1/statuses/retweets_of_me.json", req.session.oauth.access_token, req.session.oauth.access_token_secret, function(error, data) {
+// consider using instead: https://github.com/danielhusar/node-twitter/blob/master/lib/twitter.js
+function callTwitterApi(resourceUrl, paramsString, req, cb) {
+  var url = "https://api.twitter.com/1.1/"+resourceUrl+(paramsString ? paramsString : '');
+  oa.get(url, req.session.oauth.access_token, req.session.oauth.access_token_secret, function(error, data) {
+    if (error) {
+      error.reequestedUrl = url;
+    }
     cb(error, data);
   });
 }
 
 
 app.listen(3000);
-console.log('Listening on port 3000');
+util.puts('Listening on port 3000');
