@@ -40,7 +40,16 @@ app.configure('development', function(){
 
 
 app.get('/', authBounce, function(req, res){
-  res.send("Hello, looks like you're logged in as @"+req.session.screen_name);
+  res.send("Welcome to Twitter Timeline Spotlight, looks like you're logged in as @"+req.session.screen_name);
+});
+
+app.get('/login', function(req, res){
+  if (loggedIn(req)){
+    res.redirect('/');
+  }
+  else {
+    res.send('Welcome to Twitter Timeline Spotlight.  Please <a href="/auth/twitter">Sign in with Twitter</a> to use.');
+  }
 });
 
 app.get('/auth/twitter', function(req, res){
@@ -85,14 +94,18 @@ app.get('/auth/twitter/callback', function(req, res, next){
 
 function authBounce(req, res, next){
   // console.log(req.session);
-  if(req.session.oauth && req.session.oauth.access_token){
+  if(loggedIn(req)){
     console.log("Logged in as", req.session.screen_name);
     next();
    }
   else {
     console.log("No access token found, go to log in");
-    res.redirect('/auth/twitter');
+    res.redirect('/login');
   }
+}
+
+function loggedIn(req) {
+  return (req.session.oauth && req.session.oauth.access_token);
 }
 
 app.listen(3000);
