@@ -28,7 +28,7 @@ app.configure(function(){
   app.use(express.cookieParser());
   app.use(express.session({ secret: privateConfig.sessionSecret }));
   app.use(app.router);
-  // app.use(require('stylus').middleware(__dirname + '/public'));
+  app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(__dirname + '/public'));
 });
 
