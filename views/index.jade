@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+  h1 This is Index 
+  p Welcome @
+    = user.screenName
+  #timeline
+    ul
+      each tweet in data
+        li= tweet.text

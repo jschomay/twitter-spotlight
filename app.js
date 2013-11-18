@@ -20,9 +20,8 @@ var oa = new OAuth(
 
 
 app.configure(function(){
-  // app.set('views', __dirname + '/views');
-  // app.set('view engine', 'jade');
-  // app.set('view options', {layout: false});
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
   // app.use(express.favicon());
   app.use(express.logger('dev'));
   // app.use(express.bodyParser());
@@ -30,7 +29,7 @@ app.configure(function(){
   app.use(express.session({ secret: privateConfig.sessionSecret }));
   app.use(app.router);
   // app.use(require('stylus').middleware(__dirname + '/public'));
-  // app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function(){
@@ -40,6 +39,7 @@ app.configure('development', function(){
 
 
 app.get('/', authBounce, function(req, res){
+  var user = {screenName: req.session.screen_name};
   callTwitterApi('statuses/retweets_of_me.json', null, req, function(error, data) {
     if (error) {
       util.error('Error calling twitter api', util.inspect(error));
@@ -48,7 +48,9 @@ app.get('/', authBounce, function(req, res){
     else {
       // util.puts('data from callTwitterApi', util.inspect(JSON.parse(data)));
       console.log('data from callTwitterApi', JSON.parse(data)); // inspect in browser (via node-monkey)
-      res.send("Welcome to Twitter Timeline Spotlight, looks like you're logged in as @"+req.session.screen_name+'<br><br>Here\'s your data:<br><br>'+data);
+      // res.send("Welcome to Twitter Timeline Spotlight, looks like you're logged in as @"+req.session.screen_name+'<br><br>Here\'s your data:<br><br>'+data);
+      var locals = {user: user, data: JSON.parse(data)};
+      res.render('index', locals);
     }
   });
 });
