@@ -1,6 +1,23 @@
 body {
   background: #ffffe0;
 }
-.timeline {
-  border: 1px solid #000;
+header {
+  background: #222;
+  color: #f2f2f2;
+  padding: 2% 5%;
+}
+.page {
+  border: 1px solid #aaa;
+  width: 50%;
+  margin: auto;
+  padding: 0% 1%;
+  background: #00008b;
+}
+.stream {
+  background: #fff;
+}
+.stream ol.stream-items {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }

@@ -2,10 +2,15 @@ extends layout
 
 block content
 
-  h1 This is Index 
-  p Welcome @
-    = user.screenName
-  .stream.home-stream
-    ol.stream-items
-      each tweet in data
-        include tweet
+  header
+    h1 Welcome to Twitter Timeline Spotlight
+    p Intelligently emphasize the tweets on your twitter timeline that matter most to you, based on your recent behavior.
+    p 
+      small Logged in as @
+        = user.screenName
+
+  section.page
+    .stream.home-stream
+      ol.stream-items
+        each tweet in data
+          include tweet

@@ -1,4 +1,32 @@
+// colors
+background = lightyellow
+headerBackground = #222
+darkBackground = darkblue
+lightBackground = white
+borderColor = #aaa
+highlight = cyan
+lightText = #f2f2f2
+darkText = #222
+
 body
-  background lightyellow
-.timeline
-  border 1px solid black
+  background background
+
+header
+  background headerBackground
+  color lightText
+  padding 2% 5%
+
+.page
+  border 1px solid borderColor
+  width 50%
+  margin auto
+  padding 0% 1%
+  background darkBackground
+
+.stream
+  background lightBackground
+
+  ol.stream-items
+    margin 0
+    padding 0
+    list-style-type: none

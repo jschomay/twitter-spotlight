@@ -8,8 +8,8 @@ li.stream-item
           strong.fullname 
             =tweet.user.name
           span.username
-            @
             b 
+              @
               =tweet.user.screen_name
         small.time
           a.tweet-timestamp(href='https://twitter.com/'+tweet.user.screen_name+'/status/'+tweet.id_str)
