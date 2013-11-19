@@ -6,6 +6,8 @@ var privateConfig = require('./private-config'),
     // pipe console log to browser
     require('node-monkey').start();
 
+// live reload, just saving styl files, etc will immidiately reflect changes in browser
+require('express-livereload')(app, config={});
 
 var oa = new OAuth(
   "https://api.twitter.com/oauth/request_token",
@@ -35,7 +37,6 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-
 
 
 app.get('/', authBounce, function(req, res){

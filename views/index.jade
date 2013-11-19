@@ -5,7 +5,7 @@ block content
   h1 This is Index 
   p Welcome @
     = user.screenName
-  .timeline
-    ul
+  .stream.home-stream
+    ol.stream-items
       each tweet in data
         include tweet
