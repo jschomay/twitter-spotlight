@@ -1,5 +1,7 @@
 body {
   background: #ffffe0;
+  font-size: 12pt;
+  line-height: 12pt;
 }
 header {
   background: #222;
@@ -7,8 +9,8 @@ header {
   padding: 2% 5%;
 }
 .page {
-  border: 1px solid #aaa;
-  width: 50%;
+  border: 1px solid #ddd;
+  width: 40%;
   margin: auto;
   padding: 0% 1%;
   background: #00008b;
@@ -20,4 +22,49 @@ header {
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+.stream ol.stream-items .stream-item {
+  background: #fff;
+}
+.stream ol.stream-items .stream-item:hover {
+  background: #f2f2f2;
+}
+.stream ol.stream-items .tweet {
+  padding: 2% 1.5% 5%;
+  border-bottom: 1px solid #ddd;
+}
+.stream ol.stream-items .tweet .content {
+  margin-left: 14%;
+}
+.stream ol.stream-items .tweet .content .stream-item-header {
+  padding-bottom: 1%;
+}
+.stream ol.stream-items .tweet .content .stream-item-header .account-group {
+  text-decoration: none;
+  color: #333;
+}
+.stream ol.stream-items .tweet .content .stream-item-header .account-group .avatar {
+  float: left;
+  margin-top: 0.5%;
+  margin-left: -15%;
+  width: 13%;
+  border-radius: 10%;
+}
+.stream ol.stream-items .tweet .content .stream-item-header .account-group .fullname {
+  font-weight: bold;
+}
+.stream ol.stream-items .tweet .content .stream-item-header .account-group .username {
+  font-size: 90%;
+  font-weight: normal;
+  color: #707070;
+}
+.stream ol.stream-items .tweet .content .stream-item-header .time {
+  display: none;
+}
+.stream ol.stream-items .tweet .tweet-text {
+  color: #333;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 90%;
+  line-height: 140%;
 }

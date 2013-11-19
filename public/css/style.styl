@@ -3,13 +3,15 @@ background = lightyellow
 headerBackground = #222
 darkBackground = darkblue
 lightBackground = white
-borderColor = #aaa
+borderColor = #ddd
 highlight = cyan
 lightText = #f2f2f2
-darkText = #222
+darkText = #333
 
 body
   background background
+  font-size 12pt
+  line-height 12pt
 
 header
   background headerBackground
@@ -18,7 +20,7 @@ header
 
 .page
   border 1px solid borderColor
-  width 50%
+  width 40%
   margin auto
   padding 0% 1%
   background darkBackground
@@ -30,3 +32,48 @@ header
     margin 0
     padding 0
     list-style-type: none
+    
+    .stream-item
+      background lightBackground
+      &:hover
+        background darken(lightBackground, 5%)
+
+    .tweet
+      padding 2% 1.5% 5%
+      border-bottom 1px solid borderColor
+
+      .content
+        margin-left 14%
+
+        .stream-item-header
+          padding-bottom 1%
+
+          .account-group
+            text-decoration none
+            color darkText
+
+            .avatar
+              float left
+              margin-top 0.5%
+              margin-left -15%
+              width 13%
+              border-radius 10%
+
+            .fullname
+              font-weight bold
+
+            .username
+              font-size 90%
+              font-weight normal
+              color lighten(darkText, 30%)
+
+          .time
+            // TODO - display this better
+            display none
+
+      .tweet-text
+        color darkText
+        white-space pre-wrap
+        word-wrap break-word
+        font-size 90%
+        line-height 140%
