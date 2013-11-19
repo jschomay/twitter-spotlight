@@ -1,0 +1,20 @@
+li.stream-item 
+  //- tweet.text
+  .tweet
+    .content
+      .stream-item-header      
+        a.account-group(href='https://twitter.com/'+tweet.user.screen_name)
+          img.avatar(src=tweet.user.profile_image_url_https)
+          strong.fullname 
+            =tweet.user.name
+          span.username
+            @
+            b 
+              =tweet.user.screen_name
+        small.time
+          a.tweet-timestamp(href='https://twitter.com/'+tweet.user.screen_name+'/status/'+tweet.id_str)
+            span._timestamp 
+              =tweet.created_at
+      .tweet-text 
+        =tweet.text
+      .stream-item-footer

@@ -40,7 +40,7 @@ app.configure('development', function(){
 
 app.get('/', authBounce, function(req, res){
   var user = {screenName: req.session.screen_name};
-  callTwitterApi('statuses/retweets_of_me.json', null, req, function(error, data) {
+  callTwitterApi('statuses/home_timeline.json', null, req, function(error, data) {
     if (error) {
       util.error('Error calling twitter api', util.inspect(error));
       res.send('Got an error when trying to talk to twitter :(');
