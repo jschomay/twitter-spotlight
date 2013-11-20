@@ -1,25 +1,84 @@
+* {
+  box-sizing: border-box;
+}
 body {
-  background: #ffffe0;
+  background: #142943;
   font-size: 12pt;
   line-height: 12pt;
 }
 header {
-  background: #222;
-  color: #f2f2f2;
-  padding: 2% 5%;
+  background: #2e2e2e;
+  color: #eee;
+  width: 40%;
+  margin: auto;
+}
+@media all and (max-width: 950px) {
+  header {
+    width: 60%;
+  }
+}
+@media all and (max-width: 550px) {
+  header {
+    width: 100%;
+  }
+}
+header .title {
+  margin: 0%;
+  padding: 2%;
+  background: #4b83c9;
+  font-size: 160%;
+  font-weight: normal;
+  line-height: 90%;
+}
+header .tagline {
+  margin: 0%;
+  padding: 1% 0%;
+  font-size: 60%;
+  line-height: 100%;
+  font-weight: normal;
+}
+header .info-bar {
+  padding: 1% 2% 2%;
+  font-size: 70%;
+  background: #2e2e2e;
+}
+header .info-bar a {
+  color: #a7a7a7;
+}
+header .info-bar a:hover {
+  color: #bebebe;
+}
+header .info-bar div {
+  display: inline-block;
+}
+header .info-bar .credits {
+  float: right;
 }
 .page {
-  border: 1px solid #ddd;
   width: 40%;
   margin: auto;
   padding: 0% 1%;
-  background: #00008b;
+  background: #285286;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+@media all and (max-width: 950px) {
+  .page {
+    width: 60%;
+  }
+}
+@media all and (max-width: 550px) {
+  .page {
+    width: 100%;
+  }
 }
 .stream {
-  background: #fff;
+  background: #eee;
 }
 .stream ol.stream-items {
   margin: 0;
+  margin-bottom: 1%;
   padding: 0;
   list-style-type: none;
 }
@@ -67,4 +126,5 @@ header {
   word-wrap: break-word;
   font-size: 90%;
   line-height: 140%;
+  text-decoration: none;
 }

@@ -13,6 +13,6 @@ li.stream-item
           a.tweet-timestamp(href='https://twitter.com/'+tweet.user.screen_name+'/status/'+tweet.id_str)
             span._timestamp 
               =tweet.created_at
-      .tweet-text
+      a.tweet-text(href='https://twitter.com/'+tweet.user.screen_name+'/status/'+tweet.id_str)
         =tweet.text
       .stream-item-footer

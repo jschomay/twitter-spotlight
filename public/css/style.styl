@@ -1,42 +1,105 @@
 // colors
-background = lightyellow
-headerBackground = #222
-darkBackground = darkblue
-lightBackground = white
+highlight1 = #3266A8
+highlight2 = lighten(highlight1, 20%)
+background1 = darken(highlight1, 60%)
+background2 = darken(highlight1, 20%)
+dark = #2e2e2e
+light = #eee
 borderColor = #ddd
-highlight = cyan
-lightText = #f2f2f2
+lightText = #eee
 darkText = #333
 
+
+// breakpoints
+midBreakPoint = 950px
+smallBreakPoint = 550px
+
+mid = "all and (max-width: " + midBreakPoint + ")"
+small = "all and (max-width: " + smallBreakPoint + ")"
+
+fullWidth = 40%
+midWidth = 60%
+mobileWidth = 100%
+
+*
+  box-sizing border-box
+
 body
-  background background
+  background background1
   font-size 12pt
   line-height 12pt
 
 header
-  background headerBackground
+  background dark
   color lightText
-  padding 2% 5%
+  width fullWidth
+  margin auto
 
+  @media mid
+    width midWidth
+
+  @media small
+    width mobileWidth
+
+  .title
+    margin 0%
+    padding 2%
+    background highlight2
+    font-size 160%
+    font-weight normal
+    line-height 90%
+
+  .tagline
+    margin 0%
+    padding 1% 0%
+    font-size 60%
+    line-height 100%
+    font-weight normal
+
+  .info-bar
+    padding 1% 2% 2%
+    font-size 70%
+    background dark
+
+    a
+      color darken(lightText, 30%)
+      &:hover
+        color darken(lightText, 20%)
+
+    div
+      display inline-block
+
+    .credits
+      float right
 .page
-  border 1px solid borderColor
   width 40%
   margin auto
   padding 0% 1%
-  background darkBackground
+  background background2
+  position absolute
+  left 0
+  right 0
+
+  @media mid
+    width midWidth
+
+  @media small
+    width mobileWidth
+
 
 .stream
-  background lightBackground
+  background light
 
   ol.stream-items
     margin 0
+    margin-bottom 1%
     padding 0
     list-style-type: none
     
     .stream-item
-      background lightBackground
+      background white
       &:hover
-        background darken(lightBackground, 5%)
+        background darken(white, 5%)
 
     .tweet
       padding 2% 1.5% 5%
@@ -77,3 +140,4 @@ header
         word-wrap break-word
         font-size 90%
         line-height 140%
+        text-decoration none

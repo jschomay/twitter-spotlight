@@ -3,11 +3,17 @@ extends layout
 block content
 
   header
-    h1 Welcome to Twitter Timeline Spotlight
-    p Intelligently emphasize the tweets on your twitter timeline that matter most to you, based on your recent behavior.
-    p 
-      small Logged in as @
-        = user.screenName
+    h1.title(title="Twitter Timeline Spotlight intelligently emphasizes relevant tweets, based on your recent activity") Twitter Timeline Spotlight
+      p.tagline See the tweets that matter most to you
+    .info-bar 
+      .logged-in-user Logged in as 
+        a(href="https://twitter.com/"+user.screenName)
+          @
+          = user.screenName
+      .credits By 
+        a(href="http://jeffschomay.com", target="_blank") Jeff Schomay
+        | 
+        a(href="https://github.com/jschomay/twitter-spotlight", target="_blank") View source
 
   section.page
     .stream.home-stream
