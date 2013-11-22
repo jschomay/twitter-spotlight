@@ -12,10 +12,10 @@ darkText = #333
 
 // breakpoints
 midBreakPoint = 950px
-smallBreakPoint = 550px
+mobileBreakPoint = 320px
 
 mid = "all and (max-width: " + midBreakPoint + ")"
-small = "all and (max-width: " + smallBreakPoint + ")"
+mobile = "all and (max-width: " + mobileBreakPoint + ")"
 
 fullWidth = 40%
 midWidth = 60%
@@ -35,10 +35,16 @@ header
   width fullWidth
   margin auto
 
+  @media mobile
+    position fixed
+    left 0
+    right 0
+    z-index 9
+
   @media mid
     width midWidth
 
-  @media small
+  @media mobile
     width mobileWidth
 
   .title
@@ -48,6 +54,9 @@ header
     font-size 160%
     font-weight normal
     line-height 90%
+
+    @media mobile
+      font-size 130%
 
   .tagline
     margin 0%
@@ -83,8 +92,9 @@ header
   @media mid
     width midWidth
 
-  @media small
+  @media mobile
     width mobileWidth
+    margin-top 75px
 
 
 .stream
@@ -106,7 +116,7 @@ header
       border-bottom 1px solid borderColor
 
       .content
-        margin-left 14%
+        margin-left 58px
 
         .stream-item-header
           padding-bottom 1%
@@ -118,8 +128,8 @@ header
             .avatar
               float left
               margin-top 0.5%
-              margin-left -15%
-              width 13%
+              margin-left -56px
+              width 48px
               border-radius 10%
 
             .fullname

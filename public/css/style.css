@@ -12,12 +12,20 @@ header {
   width: 40%;
   margin: auto;
 }
+@media all and (max-width: 320px) {
+  header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 9;
+  }
+}
 @media all and (max-width: 950px) {
   header {
     width: 60%;
   }
 }
-@media all and (max-width: 550px) {
+@media all and (max-width: 320px) {
   header {
     width: 100%;
   }
@@ -29,6 +37,11 @@ header .title {
   font-size: 160%;
   font-weight: normal;
   line-height: 90%;
+}
+@media all and (max-width: 320px) {
+  header .title {
+    font-size: 130%;
+  }
 }
 header .tagline {
   margin: 0%;
@@ -68,9 +81,10 @@ header .info-bar .credits {
     width: 60%;
   }
 }
-@media all and (max-width: 550px) {
+@media all and (max-width: 320px) {
   .page {
     width: 100%;
+    margin-top: 75px;
   }
 }
 .stream {
@@ -93,7 +107,7 @@ header .info-bar .credits {
   border-bottom: 1px solid #ddd;
 }
 .stream ol.stream-items .tweet .content {
-  margin-left: 14%;
+  margin-left: 58px;
 }
 .stream ol.stream-items .tweet .content .stream-item-header {
   padding-bottom: 1%;
@@ -105,8 +119,8 @@ header .info-bar .credits {
 .stream ol.stream-items .tweet .content .stream-item-header .account-group .avatar {
   float: left;
   margin-top: 0.5%;
-  margin-left: -15%;
-  width: 13%;
+  margin-left: -56px;
+  width: 48px;
   border-radius: 10%;
 }
 .stream ol.stream-items .tweet .content .stream-item-header .account-group .fullname {
