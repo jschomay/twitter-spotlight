@@ -9,13 +9,14 @@ var privateConfig = require('./private-config'),
 // live reload, just saving styl files, etc will immidiately reflect changes in browser
 require('express-livereload')(app, config={});
 
+
 var oa = new OAuth(
   "https://api.twitter.com/oauth/request_token",
   "https://api.twitter.com/oauth/access_token",
   privateConfig.consumerKey,
   privateConfig.consumerSecret,
   "1.0",
-  "http://127.0.0.1:3000/auth/twitter/callback",
+  null, //this parm is needed, but we'll plug it in below to make it dynamic
   "HMAC-SHA1"
 );
 
@@ -66,6 +67,8 @@ app.get('/login', function(req, res){
 });
 
 app.get('/auth/twitter', function(req, res){
+  // plug requested host in here to keep it dynamic (dev vs prod, and testing on other devices)
+  oa._authorize_callback = "http://"+req.host+":3000/auth/twitter/callback",
   oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
     if (error) {
       util.puts(error);
@@ -90,8 +93,8 @@ app.get('/auth/twitter/callback', function(req, res, next){
     oa.getOAuthAccessToken(oauth.token,oauth.token_secret,oauth.verifier,
     function(error, oauth_access_token, oauth_access_token_secret, results){
       if (error){
-        util.puts(error);
-        res.send("yeah something broke.");
+        util.puts(util.inspect(error));
+        res.send("yeah something broke. try going <a href=\"/\">here</a>");
       } else {
         req.session.oauth.access_token = oauth_access_token;
         req.session.oauth.access_token_secret = oauth_access_token_secret;
