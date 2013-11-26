@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 body {
   background: #142943;
@@ -141,4 +142,35 @@ header .info-bar .credits {
   font-size: 90%;
   line-height: 140%;
   text-decoration: none;
+}
+.stream ol.stream-items .stream-item:nth-child(2) .tweet {
+  padding-bottom: 1%;
+  line-height: 40%;
+}
+.stream ol.stream-items .stream-item:nth-child(2) .tweet .content {
+  margin-left: 30px;
+}
+.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header {
+  padding-bottom: 0;
+}
+.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .avatar {
+  width: 23px;
+  margin-top: 0%;
+  margin-left: -30px;
+  border-radius: 15%;
+}
+.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .fullname {
+  font-size: 70%;
+}
+.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .username {
+  font-size: 60%;
+}
+.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .tweet-text {
+  font-size: 75%;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
