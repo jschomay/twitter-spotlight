@@ -3,6 +3,7 @@ var privateConfig = require('./private-config'),
     util          = require('util'),
     express       = require('express'),
     async         = require('async'),
+    spotlight     = require('./lib/spotlight'),
     app           = express();
     // pipe console log to browser
     require('node-monkey').start();
@@ -65,11 +66,9 @@ app.get('/', authBounce, function(req, res){
         util.error('Error calling twitter api', util.inspect(err));
         res.send('Got an error when trying to talk to twitter :(', JSON.strigify(err));
       } else {
-        // spotlight.makeSmartList(results.activity);
-        // var filteredTimeline = spotlight.filterTimeline(spotlight.smartList, results.timeline);
-        // var locals = {user: user, data: filterTimeline};
-        console.log('RESULTS:',results.timeline.concat(results.activity));
-        var locals = {user: user, data: results.timeline.concat(results.activity)};
+        spotlight.makeSmartList(results.activity);
+        var filteredTimeline = spotlight.filterTimeline(results.timeline);
+        var locals = {user: user, data: filteredTimeline};
         res.render('index', locals);
       }
   });
