@@ -8,10 +8,11 @@ body {
   line-height: 12pt;
 }
 header {
-  background: #2e2e2e;
   color: #eee;
-  width: 40%;
+  width: 60%;
   margin: auto;
+  position: relative;
+  background: #4b83c9;
 }
 @media all and (max-width: 320px) {
   header {
@@ -23,7 +24,7 @@ header {
 }
 @media all and (max-width: 950px) {
   header {
-    width: 60%;
+    width: 80%;
   }
 }
 @media all and (max-width: 320px) {
@@ -33,8 +34,9 @@ header {
 }
 header .title {
   margin: 0%;
-  padding: 2%;
-  background: #4b83c9;
+  margin-left: 60px;
+  height: 64px;
+  padding: 10px;
   font-size: 160%;
   font-weight: normal;
   line-height: 90%;
@@ -42,17 +44,35 @@ header .title {
 @media all and (max-width: 320px) {
   header .title {
     font-size: 130%;
+    margin-left: 50px;
+    height: 55px;
   }
 }
-header .tagline {
+header .title .tagline {
   margin: 0%;
-  padding: 1% 0%;
+  padding: 5px 0;
   font-size: 60%;
   line-height: 100%;
   font-weight: normal;
 }
+header .logo {
+  position: absolute;
+  margin-top: 8px;
+  margin-left: 8px;
+  top: 0%;
+  left: 0%;
+  border: 2px solid #3266a8;
+  width: 48px;
+}
+@media all and (max-width: 320px) {
+  header .logo {
+    width: 44px;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+}
 header .info-bar {
-  padding: 1% 2% 2%;
+  padding: 1% 2%;
   font-size: 70%;
   background: #2e2e2e;
 }
@@ -69,7 +89,7 @@ header .info-bar .credits {
   float: right;
 }
 .page {
-  width: 40%;
+  width: 60%;
   margin: auto;
   padding: 0% 1%;
   background: #285286;
@@ -79,13 +99,13 @@ header .info-bar .credits {
 }
 @media all and (max-width: 950px) {
   .page {
-    width: 60%;
+    width: 80%;
   }
 }
 @media all and (max-width: 320px) {
   .page {
     width: 100%;
-    margin-top: 75px;
+    margin-top: 77px;
   }
 }
 .stream {
@@ -158,6 +178,11 @@ header .info-bar .credits {
   margin-top: 0%;
   margin-left: -30px;
   border-radius: 15%;
+}
+@media all and (max-width: 320px) {
+  .stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .avatar {
+    margin-top: -1%;
+  }
 }
 .stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .fullname {
   font-size: 70%;

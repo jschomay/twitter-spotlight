@@ -17,8 +17,8 @@ mobileBreakPoint = 320px
 mid = "all and (max-width: " + midBreakPoint + ")"
 mobile = "all and (max-width: " + mobileBreakPoint + ")"
 
-fullWidth = 40%
-midWidth = 60%
+fullWidth = 60%
+midWidth = 80%
 mobileWidth = 100%
 
 *
@@ -31,10 +31,11 @@ body
   line-height 12pt
 
 header
-  background dark
   color lightText
   width fullWidth
   margin auto
+  position relative
+  background highlight2
 
   @media mobile
     position fixed
@@ -50,24 +51,41 @@ header
 
   .title
     margin 0%
-    padding 2%
-    background highlight2
+    margin-left 60px
+    height 64px
+    padding 10px
     font-size 160%
     font-weight normal
     line-height 90%
 
     @media mobile
       font-size 130%
+      margin-left 50px
+      height 55px
 
-  .tagline
-    margin 0%
-    padding 1% 0%
-    font-size 60%
-    line-height 100%
-    font-weight normal
+    .tagline
+      margin 0%
+      padding 5px 0
+      font-size 60%
+      line-height 100%
+      font-weight normal
+
+  .logo
+    position absolute
+    margin-top 8px
+    margin-left 8px
+    top 0%
+    left 0%
+    border 2px solid highlight1
+    width 48px
+
+    @media mobile
+      width 44px
+      margin-top 5px 
+      margin-left 5px 
 
   .info-bar
-    padding 1% 2% 2%
+    padding 1% 2%
     font-size 70%
     background dark
 
@@ -82,7 +100,7 @@ header
     .credits
       float right
 .page
-  width 40%
+  width fullWidth
   margin auto
   padding 0% 1%
   background background2
@@ -95,7 +113,7 @@ header
 
   @media mobile
     width mobileWidth
-    margin-top 75px
+    margin-top 77px
 
 
 .stream
@@ -170,6 +188,10 @@ header
             margin-top 0%
             margin-left -30px
             border-radius 15%
+
+            @media mobile
+              margin-top -1%
+
           .fullname
             font-size 70%
           .username
