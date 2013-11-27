@@ -12,7 +12,8 @@
     "oauth": "*",
     "express": "3.1.0",
     "jade": "~0.35.0",
-    "stylus": "~0.40.3"
+    "stylus": "~0.40.3",
+    "async": "~0.2.9"
   },
   "devDependencies": {
     "node-monkey": "~0.2.8",

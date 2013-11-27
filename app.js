@@ -2,6 +2,7 @@ var privateConfig = require('./private-config'),
     OAuth         = require('oauth').OAuth,
     util          = require('util'),
     express       = require('express'),
+    async         = require('async'),
     app           = express();
     // pipe console log to browser
     require('node-monkey').start();
@@ -42,18 +43,35 @@ app.configure('development', function(){
 
 app.get('/', authBounce, function(req, res){
   var user = {screenName: req.session.screen_name};
-  callTwitterApi('statuses/home_timeline.json', null, req, function(error, data) {
-    if (error) {
-      util.error('Error calling twitter api', util.inspect(error));
-      res.send('Got an error when trying to talk to twitter :(');
+  // get the user timeline and recent activity in parallel to process
+  async.parallel({
+    timeline: function(callback){
+      callTwitterApi('statuses/home_timeline.json', null, req, function(error, data) {
+        // util.puts('data from callTwitterApi', util.inspect(JSON.parse(data))); // view in terminal console
+        console.log('Timeline data from callTwitterApi', JSON.parse(data)); // inspect in browser (via node-monkey)
+        callback(error, JSON.parse(data));
+      });
+    },
+    activity: function(callback){
+      callTwitterApi('statuses/mentions_timeline.json', null, req, function(error, data){
+        console.log('Activity data from callTwitterApi', JSON.parse(data)); // inspect in browser (via node-monkey)
+        callback(error, JSON.parse(data));
+      });
     }
-    else {
-      // util.puts('data from callTwitterApi', util.inspect(JSON.parse(data)));
-      console.log('data from callTwitterApi', JSON.parse(data)); // inspect in browser (via node-monkey)
-      // res.send("Welcome to Twitter Timeline Spotlight, looks like you're logged in as @"+req.session.screen_name+'<br><br>Here\'s your data:<br><br>'+data);
-      var locals = {user: user, data: JSON.parse(data)};
-      res.render('index', locals);
-    }
+  },
+  // filter timeline through smartlist
+  function(err, results) {
+      if (err) {
+        util.error('Error calling twitter api', util.inspect(err));
+        res.send('Got an error when trying to talk to twitter :(', JSON.strigify(err));
+      } else {
+        // spotlight.makeSmartList(results.activity);
+        // var filteredTimeline = spotlight.filterTimeline(spotlight.smartList, results.timeline);
+        // var locals = {user: user, data: filterTimeline};
+        console.log('RESULTS:',results.timeline.concat(results.activity));
+        var locals = {user: user, data: results.timeline.concat(results.activity)};
+        res.render('index', locals);
+      }
   });
 });
 
@@ -130,7 +148,7 @@ function callTwitterApi(resourceUrl, paramsString, req, cb) {
   var url = "https://api.twitter.com/1.1/"+resourceUrl+(paramsString ? paramsString : '');
   oa.get(url, req.session.oauth.access_token, req.session.oauth.access_token_secret, function(error, data) {
     if (error) {
-      error.reequestedUrl = url;
+      error.requestedUrl = url;
     }
     cb(error, data);
   });
