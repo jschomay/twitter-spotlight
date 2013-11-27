@@ -163,34 +163,34 @@ header .info-bar .credits {
   line-height: 140%;
   text-decoration: none;
 }
-.stream ol.stream-items .stream-item:nth-child(2) .tweet {
+.stream.spotlight ol.stream-items .tweet.minimized {
   padding-bottom: 1%;
   line-height: 40%;
 }
-.stream ol.stream-items .stream-item:nth-child(2) .tweet .content {
+.stream.spotlight ol.stream-items .tweet.minimized .content {
   margin-left: 30px;
 }
-.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header {
+.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header {
   padding-bottom: 0;
 }
-.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .avatar {
+.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .avatar {
   width: 23px;
   margin-top: 0%;
   margin-left: -30px;
   border-radius: 15%;
 }
 @media all and (max-width: 320px) {
-  .stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .avatar {
+  .stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .avatar {
     margin-top: -1%;
   }
 }
-.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .fullname {
+.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .fullname {
   font-size: 70%;
 }
-.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .stream-item-header .account-group .username {
+.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .username {
   font-size: 60%;
 }
-.stream ol.stream-items .stream-item:nth-child(2) .tweet .content .tweet-text {
+.stream.spotlight ol.stream-items .tweet.minimized .content .tweet-text {
   font-size: 75%;
   overflow: hidden;
   display: inline-block;

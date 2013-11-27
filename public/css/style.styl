@@ -171,36 +171,34 @@ header
         line-height 140%
         text-decoration none
 
+        
+// minimized tweets styles
+.stream.spotlight ol.stream-items .tweet.minimized
+  padding-bottom 1%
+  line-height 40%
+  .content 
+    margin-left 30px
+    .stream-item-header
+      padding-bottom 0
+      .account-group
+        .avatar
+          width 23px
+          margin-top 0%
+          margin-left -30px
+          border-radius 15%
 
-// .spotlighted .tweet.minimized
-// TODO - USE CLASSES ABOVE INSTEAD OF TESTING NTH CHILD BELOW TO TRIGGER MINIMALIZE STYLES
-.stream ol.stream-items .stream-item:nth-child(2) 
-  .tweet
-    padding-bottom 1%
-    line-height 40%
-    .content 
-      margin-left 30px
-      .stream-item-header
-        padding-bottom 0
-        .account-group
-          .avatar
-            width 23px
-            margin-top 0%
-            margin-left -30px
-            border-radius 15%
+          @media mobile
+            margin-top -1%
 
-            @media mobile
-              margin-top -1%
-
-          .fullname
-            font-size 70%
-          .username
-            font-size 60%
-      .tweet-text
-        font-size 75%
-        overflow hidden
-        display inline-block
-        width 100%
-        white-space nowrap
-        overflow hidden
-        text-overflow ellipsis
+        .fullname
+          font-size 70%
+        .username
+          font-size 60%
+    .tweet-text
+      font-size 75%
+      overflow hidden
+      display inline-block
+      width 100%
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis

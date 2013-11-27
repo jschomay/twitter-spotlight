@@ -1,5 +1,5 @@
 li.stream-item 
-  .tweet
+  .tweet(class="#{tweet.minimized ? 'minimized' : ''}")
     .content
       .stream-item-header      
         a.account-group(href='https://twitter.com/'+tweet.user.screen_name)
