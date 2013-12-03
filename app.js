@@ -45,32 +45,40 @@ app.configure('development', function(){
 app.get('/', authBounce, function(req, res){
   var user = {screenName: req.session.screen_name};
   // get the user timeline and recent activity in parallel to process
+  console.time('api calls');
   async.parallel({
     timeline: function(callback){
       callTwitterApi('statuses/home_timeline.json', null, req, function(error, data) {
         // util.puts('data from callTwitterApi', util.inspect(JSON.parse(data))); // view in terminal console
-        console.log('Timeline data from callTwitterApi', JSON.parse(data)); // inspect in browser (via node-monkey)
+        console.log('Timeline', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
     },
-    activity: function(callback){
+    userTweets: function(callback){
+      callTwitterApi('statuses/user_timeline.json', null, req, function(error, data){
+        console.log('User Tweets', JSON.parse(data)); // inspect in browser (via node-monkey)
+        callback(error, JSON.parse(data));
+      });
+    },
+    mentions: function(callback){
       callTwitterApi('statuses/mentions_timeline.json', null, req, function(error, data){
-        console.log('Activity data from callTwitterApi', JSON.parse(data)); // inspect in browser (via node-monkey)
+        console.log('Mentions', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
     }
   },
   // filter timeline through smartlist
   function(err, results) {
-      if (err) {
-        util.error('Error calling twitter api', util.inspect(err));
-        res.send('Got an error when trying to talk to twitter :(', JSON.strigify(err));
-      } else {
-        spotlight.makeSmartList(results.activity);
-        var filteredTimeline = spotlight.filterTimeline(results.timeline);
-        var locals = {user: user, data: filteredTimeline};
-        res.render('index', locals);
-      }
+    console.timeEnd('api calls');
+    if (err) {
+      util.error('Error calling twitter api', util.inspect(err));
+      res.send('Got an error when trying to talk to twitter :(', JSON.strigify(err));
+    } else {
+      spotlight.makeSmartList(results.userTweets, results.mentions);
+      var filteredTimeline = spotlight.filterTimeline(results.timeline);
+      var locals = {user: user, data: filteredTimeline};
+      res.render('index', locals);
+    }
   });
 });
 
