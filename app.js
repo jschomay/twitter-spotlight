@@ -45,6 +45,7 @@ app.configure('development', function(){
 app.get('/', authBounce, function(req, res){
   var user = {screenName: req.session.screen_name};
   // get the user timeline and recent activity in parallel to process
+  // hmmm, wish I didn't have to hit 5+ api's, but I'm not sure if there's a better way to do it...
   console.time('api calls');
   async.parallel({
     timeline: function(callback){
@@ -65,6 +66,12 @@ app.get('/', authBounce, function(req, res){
         console.log('Mentions', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
+    },
+    favorites: function(callback){
+      callTwitterApi('favorites/list.json', null, req, function(error, data){
+        console.log('favorites', JSON.parse(data)); // inspect in browser (via node-monkey)
+        callback(error, JSON.parse(data));
+      });
     }
   },
   // filter timeline through smartlist
@@ -74,7 +81,7 @@ app.get('/', authBounce, function(req, res){
       util.error('Error calling twitter api', util.inspect(err));
       res.send('Got an error when trying to talk to twitter :(', JSON.strigify(err));
     } else {
-      spotlight.makeSmartList(results.userTweets, results.mentions);
+      spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites);
       var filteredTimeline = spotlight.filterTimeline(results.timeline);
       var locals = {user: user, data: filteredTimeline};
       res.render('index', locals);
