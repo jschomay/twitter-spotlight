@@ -72,6 +72,12 @@ app.get('/', authBounce, function(req, res){
         console.log('favorites', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
+    },
+    followers: function(callback){
+      callTwitterApi('followers/list.json', '?skip_status=true&include_user_entities=false', req, function(error, data){
+        console.log('followers', JSON.parse(data)); // inspect in browser (via node-monkey)
+        callback(error, JSON.parse(data));
+      });
     }
   },
   // filter timeline through smartlist
@@ -81,7 +87,8 @@ app.get('/', authBounce, function(req, res){
       util.error('Error calling twitter api', util.inspect(err));
       res.send('Got an error when trying to talk to twitter :(', JSON.strigify(err));
     } else {
-      spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites);
+      // TODO refactor makeSmartList to parseFeed() and iterate over with results
+      spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites, results.followers);
       var filteredTimeline = spotlight.filterTimeline(results.timeline);
       var locals = {user: user, data: filteredTimeline};
       res.render('index', locals);
@@ -113,7 +120,7 @@ app.get('/auth/twitter', function(req, res){
       req.session.oauth.token_secret = oauth_token_secret;
       util.puts('oauth.token_secret: ' + req.session.oauth.token_secret);
       res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token);
-  }
+    }
   });
 });
 
