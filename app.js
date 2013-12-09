@@ -78,6 +78,12 @@ app.get('/', authBounce, function(req, res){
         console.log('followers', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
+    },
+    friends: function(callback){
+      callTwitterApi('friends/list.json', '?skip_status=true&include_user_entities=false', req, function(error, data){
+        console.log('friends', JSON.parse(data)); // inspect in browser (via node-monkey)
+        callback(error, JSON.parse(data));
+      });
     }
   },
   // filter timeline through smartlist
@@ -88,7 +94,7 @@ app.get('/', authBounce, function(req, res){
       res.send('Got an error when trying to talk to twitter :(', JSON.strigify(err));
     } else {
       // TODO refactor makeSmartList to parseFeed() and iterate over with results
-      spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites, results.followers);
+      spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites, results.followers, results.friends);
       var filteredTimeline = spotlight.filterTimeline(results.timeline);
       var locals = {user: user, data: filteredTimeline};
       res.render('index', locals);
