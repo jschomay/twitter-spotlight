@@ -49,7 +49,7 @@ app.get('/', authBounce, function(req, res){
   console.time('api calls');
   async.parallel({
     timeline: function(callback){
-      callTwitterApi('statuses/home_timeline.json', null, req, function(error, data) {
+      callTwitterApi('statuses/home_timeline.json', '?count=50', req, function(error, data) {
         // util.puts('data from callTwitterApi', util.inspect(JSON.parse(data))); // view in terminal console
         console.log('Timeline', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
