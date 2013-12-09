@@ -7,9 +7,10 @@ var privateConfig = require('./private-config'),
     app           = express();
     // pipe console log to browser
     require('node-monkey').start();
-
+    // require('longjohn');
 // live reload, just saving styl files, etc will immidiately reflect changes in browser
-require('express-livereload')(app, config={});
+// require('express-livereload')(app, config={});
+
 
 
 var oa = new OAuth(
@@ -91,7 +92,7 @@ app.get('/', authBounce, function(req, res){
     console.timeEnd('api calls');
     if (err) {
       util.error('Error calling twitter api', util.inspect(err));
-      res.send('Got an error when trying to talk to twitter :(', JSON.strigify(err));
+      res.send('Got an error when trying to talk to twitter :('+ JSON.stringify(err));
     } else {
       // TODO refactor makeSmartList to parseFeed() and iterate over with results
       spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites, results.followers, results.friends);

@@ -126,6 +126,7 @@ header .info-bar .credits {
 .stream ol.stream-items .tweet {
   padding: 2% 1.5% 5%;
   border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
 .stream ol.stream-items .tweet .content {
   margin-left: 58px;
