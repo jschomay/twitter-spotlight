@@ -164,6 +164,9 @@ header .info-bar .credits {
   line-height: 140%;
   text-decoration: none;
 }
+.stream ol.stream-items .tweet .tweet-text a {
+  color: #3266a8;
+}
 .stream.spotlight ol.stream-items .tweet.minimized {
   padding-bottom: 1%;
   line-height: 40%;
