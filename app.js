@@ -97,7 +97,7 @@ app.get('/', authBounce, function(req, res){
     } else {
       // TODO refactor makeSmartList to parseFeed() and iterate over with results
       spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites, results.followers, results.friends);
-      var filteredTimeline = spotlight.filterTimeline(results.timeline, user);
+      var filteredTimeline = spotlight.filterTimeline(results.timeline, user, req.cookies);
       var locals = {user: user, data: filteredTimeline};
       res.render('index', locals);
     }
