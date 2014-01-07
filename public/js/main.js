@@ -7,6 +7,9 @@ $(function() {
   // click on tweet opens in twitter
   $('.tweet').click(function(){
     $el = $(this);
+    if ($el.hasClass('system-tweet'))
+      return;
+    
     window.location.href ='https://twitter.com/'+$el.attr('data-screen_name')+'/status/'+$el.attr('data-id_str');
   });
   // stop proppigation if clicking on a link
