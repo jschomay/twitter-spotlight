@@ -4,7 +4,8 @@ var privateConfig = require('./private-config'),
     express       = require('express'),
     async         = require('async'),
     spotlight     = require('./lib/spotlight'),
-    app           = express();
+    app           = express(),
+    nodemailer    = require("nodemailer");
     // pipe console log to browser
     require('node-monkey').start();
     // require('longjohn');
@@ -30,7 +31,7 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.logger('dev'));
-  // app.use(express.bodyParser());
+  app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({ secret: privateConfig.sessionSecret }));
   app.use(app.router);
@@ -152,6 +153,40 @@ app.get('/auth/twitter/callback', function(req, res, next){
     );
   } else
     next(new Error("you're not supposed to be here."));
+});
+
+app.post('/feedback', function(req, res){
+  // create reusable transport method (opens pool of SMTP connections)
+  var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+      user: "jschomay@gmail.com",
+      pass: new Buffer(privateConfig.smpt, 'base64').toString('ascii')
+    }
+  });
+
+  // setup e-mail data with unicode symbols
+  var mailOptions = {
+    from: 'Twitter Timeline Spotlight <noreply@twittertimelinespotlight.com>',
+    to: 'jschomay@gmail.com',
+    subject: 'Twitter Timeline Spotlight feedback',
+    html: htmlEntities(req.body.feedback),
+  };
+  function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // send mail with defined transport object
+  smtpTransport.sendMail(mailOptions, function(error, response){
+    if(error){
+      console.log(error);
+    }else{
+      console.log("Message sent: " + response.message);
+    }
+
+    smtpTransport.close(); // shut down the connection pool, no more messages
+  });
+  res.send(200);
 });
 
 function authBounce(req, res, next){
