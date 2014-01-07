@@ -43,7 +43,7 @@ header .title {
 }
 @media all and (max-width: 320px) {
   header .title {
-    font-size: 130%;
+    font-size: 120%;
     margin-left: 50px;
     height: 55px;
   }
