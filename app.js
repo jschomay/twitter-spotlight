@@ -180,13 +180,14 @@ app.post('/feedback', function(req, res){
   smtpTransport.sendMail(mailOptions, function(error, response){
     if(error){
       console.log(error);
+      res.send(500);
     }else{
       console.log("Message sent: " + response.message);
+      res.send(200);
     }
 
     smtpTransport.close(); // shut down the connection pool, no more messages
   });
-  res.send(200);
 });
 
 function authBounce(req, res, next){
