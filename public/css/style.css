@@ -106,6 +106,7 @@ header .info-bar .show-options {
 }
 header .info-bar .show-options:after {
   content: " \25BC";
+  font-size: 70%;
 }
 header .info-bar .options {
   display: block;
@@ -204,34 +205,42 @@ header .info-bar .options li {
 .stream ol.stream-items .tweet .tweet-text a {
   color: #3266a8;
 }
-.stream.spotlight ol.stream-items .tweet.minimized {
+.stream.spotlight ol.stream-items .tweet.minimized,
+.stream.hide ol.stream-items .tweet.minimized {
   padding-bottom: 1%;
   line-height: 40%;
 }
-.stream.spotlight ol.stream-items .tweet.minimized .content {
+.stream.spotlight ol.stream-items .tweet.minimized .content,
+.stream.hide ol.stream-items .tweet.minimized .content {
   margin-left: 30px;
 }
-.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header {
+.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header,
+.stream.hide ol.stream-items .tweet.minimized .content .stream-item-header {
   padding-bottom: 0;
 }
-.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .avatar {
+.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .avatar,
+.stream.hide ol.stream-items .tweet.minimized .content .stream-item-header .account-group .avatar {
   width: 23px;
   margin-top: 0%;
   margin-left: -30px;
   border-radius: 15%;
 }
 @media all and (max-width: 320px) {
-  .stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .avatar {
+  .stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .avatar,
+  .stream.hide ol.stream-items .tweet.minimized .content .stream-item-header .account-group .avatar {
     margin-top: -1%;
   }
 }
-.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .fullname {
+.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .fullname,
+.stream.hide ol.stream-items .tweet.minimized .content .stream-item-header .account-group .fullname {
   font-size: 70%;
 }
-.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .username {
+.stream.spotlight ol.stream-items .tweet.minimized .content .stream-item-header .account-group .username,
+.stream.hide ol.stream-items .tweet.minimized .content .stream-item-header .account-group .username {
   font-size: 60%;
 }
-.stream.spotlight ol.stream-items .tweet.minimized .content .tweet-text {
+.stream.spotlight ol.stream-items .tweet.minimized .content .tweet-text,
+.stream.hide ol.stream-items .tweet.minimized .content .tweet-text {
   font-size: 75%;
   overflow: hidden;
   display: inline-block;
@@ -239,6 +248,12 @@ header .info-bar .options li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.stream.hide ol.stream-items .tweet.minimized {
+  height: 5px;
+  overflow: hidden;
+  padding: 0;
+  background: #eee;
 }
 .feedback-form textarea {
   width: 100%;

@@ -115,6 +115,7 @@ header
       cursor pointer
       &:after
         content " \25BC"
+        font-size 70%
 
     .options
       display block
@@ -211,8 +212,8 @@ header
           color highlight1
 
         
-// minimized tweets styles
-.stream.spotlight ol.stream-items .tweet.minimized
+// minimized tweets styles - spotlight mode
+.stream.spotlight ol.stream-items .tweet.minimized, .stream.hide ol.stream-items .tweet.minimized
   padding-bottom 1%
   line-height 40%
   .content 
@@ -241,6 +242,13 @@ header
       white-space nowrap
       overflow hidden
       text-overflow ellipsis
+
+// minimized tweets styles - hide mode
+.stream.hide ol.stream-items .tweet.minimized
+  height 5px
+  overflow hidden
+  padding 0
+  background lightText
 
 .feedback-form
   textarea

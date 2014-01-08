@@ -53,6 +53,16 @@ $(function() {
     $infoBar.toggleClass("expanded");
   });
 
+  // spotlight mode
+  $stream = $(".stream");
+  $selectMode = $("select[name=spotlight-mode]");
+  $selectMode.focus(function(){
+    $selectMode.data('spotlightMode', this.value);
+  }).change(function(){
+    $stream.removeClass($selectMode.data('spotlightMode')).addClass(this.value);
+    $selectMode.data('spotlightMode', this.value);
+  });
+
 });
 
 
