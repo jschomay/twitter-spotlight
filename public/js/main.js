@@ -47,6 +47,11 @@ $(function() {
     });
   });
 
+  // info bar
+  $infoBar = $(".info-bar");
+  $(".show-options").click(function(){
+    $infoBar.toggleClass("expanded");
+  });
 
 });
 

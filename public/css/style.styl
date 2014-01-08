@@ -88,6 +88,15 @@ header
     padding 1% 2%
     font-size 70%
     background dark
+    position relative
+    overflow hidden
+
+    &.expanded
+      border-bottom 2px solid darken(lightText, 30)
+      .show-options:after
+        content " \25b2"
+      .options
+        max-height 300px
 
     a
       color darken(lightText, 30%)
@@ -97,8 +106,33 @@ header
     div
       display inline-block
 
-    .credits
+    .log-out
+      margin-right 10px
       float right
+
+    .show-options
+      float right
+      cursor pointer
+      &:after
+        content " \25BC"
+
+    .options
+      display block
+      list-style-type none
+      padding-left 0
+      font-size 120%
+      transition max-height 500ms
+      -webkit-transition max-height 500ms
+      -moz-transition max-height 500ms
+      -o-transition max-height 500ms
+      max-height 0
+      margin 1% 0 -1%
+
+      li
+        padding 10px 0
+        width 100%
+        border-top 1px dotted darken(lightText, 70%)
+
 .page
   width fullWidth
   margin auto
@@ -134,6 +168,7 @@ header
       padding 2% 1.5% 5%
       border-bottom 1px solid borderColor
       cursor pointer
+      transition all 100ms
 
       .content
         margin-left 58px

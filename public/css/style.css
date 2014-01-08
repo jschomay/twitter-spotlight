@@ -75,6 +75,17 @@ header .info-bar {
   padding: 1% 2%;
   font-size: 70%;
   background: #2e2e2e;
+  position: relative;
+  overflow: hidden;
+}
+header .info-bar.expanded {
+  border-bottom: 2px solid #a2a2a2;
+}
+header .info-bar.expanded .show-options:after {
+  content: " \25b2";
+}
+header .info-bar.expanded .options {
+  max-height: 300px;
 }
 header .info-bar a {
   color: #a7a7a7;
@@ -85,8 +96,33 @@ header .info-bar a:hover {
 header .info-bar div {
   display: inline-block;
 }
-header .info-bar .credits {
+header .info-bar .log-out {
+  margin-right: 10px;
   float: right;
+}
+header .info-bar .show-options {
+  float: right;
+  cursor: pointer;
+}
+header .info-bar .show-options:after {
+  content: " \25BC";
+}
+header .info-bar .options {
+  display: block;
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 120%;
+  transition: max-height 500ms;
+  -webkit-transition: max-height 500ms;
+  -moz-transition: max-height 500ms;
+  -o-transition: max-height 500ms;
+  max-height: 0;
+  margin: 1% 0 -1%;
+}
+header .info-bar .options li {
+  padding: 10px 0;
+  width: 100%;
+  border-top: 1px dotted #474747;
 }
 .page {
   width: 60%;
@@ -127,6 +163,7 @@ header .info-bar .credits {
   padding: 2% 1.5% 5%;
   border-bottom: 1px solid #ddd;
   cursor: pointer;
+  transition: all 100ms;
 }
 .stream ol.stream-items .tweet .content {
   margin-left: 58px;

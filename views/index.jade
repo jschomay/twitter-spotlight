@@ -11,10 +11,34 @@ block content
         a(href="https://twitter.com/"+user.screenName)
           @
           = user.screenName
-      .credits By 
-        a(href="http://jeffschomay.com", target="_blank") Jeff Schomay
-        | 
-        a(href="https://github.com/jschomay/twitter-spotlight", target="_blank") View source
+      .show-options Options
+      .log-out
+        a(href="/logout") Log out
+      ul.options
+        li Built with node.js by 
+          a(href="http://jeffschomay.com", target="_blank") Jeff Schomay
+          | 
+          |<a href="https://twitter.com/jschomay" class="twitter-follow-button" data-show-count="false">Follow @jschomay</a>
+          |<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          |<br>Source code available on 
+          a(href="https://github.com/jschomay/twitter-spotlight", target="_blank") github
+        li
+          form Spotlight mode: 
+            select(name="spotlight-mode")
+              option(value="spotlight") Spotlight
+              option(value="hide") Hide
+              option(value="none") None
+        li
+          form Spotlight tweets: <br>
+            |With hashtags I used in the last 
+            input(name="hastags", value="10", type="text", size="2") 
+            | days<br>
+            |From people I interacted with in the last 
+            input(name="usersYouInteractWith", value="15", type="text", size="2") 
+            | days<br>
+            |From people who interacted with me in the last 
+            input(name="usersInteractingWithYou", value="10", type="text", size="2") 
+            | days
 
   section.page
     .stream.home-stream.spotlight
