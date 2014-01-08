@@ -4,16 +4,27 @@
 
 $(function() {
 
-  // click on tweet opens in twitter
+  // click on spotlighted tweet opens in twitter
   $('.tweet').click(function(){
     $el = $(this);
     if ($el.hasClass('system-tweet'))
       return;
-
-    window.location.href ='https://twitter.com/'+$el.attr('data-screen_name')+'/status/'+$el.attr('data-id_str');
+    else if ($el.hasClass('minimized')){
+      $el.removeClass('minimized');
+      return;
+    }
+    else
+      window.location.href ='https://twitter.com/'+$el.attr('data-screen_name')+'/status/'+$el.attr('data-id_str');
   });
-  // stop proppigation if clicking on a link
-  $('.tweet a').click(function(e){e.stopPropagation();});
+  $('.tweet a').click(function(e){
+    if ($(this).parents('.tweet').hasClass('minimized')) {
+      // don't follow links
+      e.preventDefault();
+    } else {
+      // don't open on twitter if clicking on a link
+      e.stopPropagation();
+    }
+  });
 
   // feedback form
   var $feedbackForm = $('.feedback-form');
