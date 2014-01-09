@@ -58,31 +58,31 @@ app.get('/', authBounce, function(req, res){
       });
     },
     userTweets: function(callback){
-      callTwitterApi('statuses/user_timeline.json', null, req, function(error, data){
+      callTwitterApi('statuses/user_timeline.json', '?count=100', req, function(error, data){
         console.log('User Tweets', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
     },
     mentions: function(callback){
-      callTwitterApi('statuses/mentions_timeline.json', null, req, function(error, data){
+      callTwitterApi('statuses/mentions_timeline.json', '?count=200', req, function(error, data){
         console.log('Mentions', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
     },
     favorites: function(callback){
-      callTwitterApi('favorites/list.json', null, req, function(error, data){
+      callTwitterApi('favorites/list.json', '?count=100', req, function(error, data){
         console.log('favorites', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
     },
     followers: function(callback){
-      callTwitterApi('followers/list.json', '?skip_status=true&include_user_entities=false', req, function(error, data){
+      callTwitterApi('followers/list.json', '?skip_status=true&include_user_entities=false&count=50', req, function(error, data){
         console.log('followers', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
     },
     friends: function(callback){
-      callTwitterApi('friends/list.json', '?skip_status=true&include_user_entities=false', req, function(error, data){
+      callTwitterApi('friends/list.json', '?skip_status=true&include_user_entities=false&count=100', req, function(error, data){
         console.log('friends', JSON.parse(data)); // inspect in browser (via node-monkey)
         callback(error, JSON.parse(data));
       });
@@ -96,9 +96,12 @@ app.get('/', authBounce, function(req, res){
       res.send('Got an error when trying to talk to twitter :('+ JSON.stringify(err));
     } else {
       // TODO refactor makeSmartList to parseFeed() and iterate over with results
+      spotlight.setConfig(req.cookies.ttsconfig);
       spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites, results.followers, results.friends);
       var filteredTimeline = spotlight.filterTimeline(results.timeline, user, req.cookies);
       var locals = {user: user, data: filteredTimeline};
+      locals.config = spotlight.getConfig();
+
       res.render('index', locals);
     }
   });

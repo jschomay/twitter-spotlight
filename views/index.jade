@@ -29,16 +29,30 @@ block content
               option(value="hide") Hide
               option(value="none") None
         li
-          form Spotlight tweets: <br>
+          form(class="config") Spotlight tweets: <br>
             |With hashtags I used in the last 
-            input(name="hastags", value="10", type="text", size="2") 
-            | days<br>
-            |From people I interacted with in the last 
-            input(name="usersYouInteractWith", value="15", type="text", size="2") 
-            | days<br>
-            |From people who interacted with me in the last 
-            input(name="usersInteractingWithYou", value="10", type="text", size="2") 
+            input(name="hashtags", value="#{config.recency.hashtags}", type="text", size="2") 
             | days
+            br
+            |From people I interacted with in the last 
+            input(name="usersYouInteractWith", value="#{config.recency.usersYouInteractWith}", type="text", size="2") 
+            | days
+            br
+            |From people who interacted with me in the last 
+            input(name="usersInteractingWithYou", value="#{config.recency.usersInteractingWithYou}", type="text", size="2") 
+            | days
+            br
+            |From the last  
+            input(name="followed", value="#{config.recency.followed}", type="text", size="2") 
+            | people you followed
+            br
+            |From the last 
+            input(name="followers", value="#{config.recency.followers}", type="text", size="2") 
+            | friends who followed you back
+            br
+            input(type="submit", value="Apply")
+        li Your "Smart List:"
+          p TODO
 
   section.page
     .stream.home-stream.spotlight

@@ -63,6 +63,14 @@ $(function() {
     $selectMode.data('spotlightMode', this.value);
   });
 
+  // config options (save to cookie)
+  $("form.config").submit(function(e){
+    e.preventDefault();
+    createCookie('ttsconfig',$(this).serialize());
+    $infoBar.toggleClass("expanded");
+    window.location.reload(true);
+  });
+
 });
 
 
