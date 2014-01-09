@@ -120,6 +120,13 @@ app.get('/login', function(req, res){
   }
 });
 
+app.get('/logout', function (req, res){
+  res.clearCookie('ttsconfig');
+  delete req.session.screen_name;
+  delete req.session.oauth;
+  res.redirect('/');
+});
+
 app.get('/auth/twitter', function(req, res){
   // plug requested host in here to keep it dynamic (dev vs prod, and testing on other devices)
   oa._authorize_callback = "http://"+req.host+":3000/auth/twitter/callback",
@@ -205,8 +212,7 @@ function authBounce(req, res, next){
    }
   else {
     console.log("No access token found, go to log in");
-    // res.redirect('/login'); // uncoment and remove next line to show sign in page
-    res.redirect('/auth/twitter');
+    res.redirect('/login');
   }
 }
 
