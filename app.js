@@ -99,8 +99,12 @@ app.get('/', authBounce, function(req, res){
       spotlight.setConfig(req.cookies.ttsconfig);
       spotlight.makeSmartList(results.userTweets, results.mentions, results.favorites, results.followers, results.friends);
       var filteredTimeline = spotlight.filterTimeline(results.timeline, user, req.cookies);
-      var locals = {user: user, data: filteredTimeline};
-      locals.config = spotlight.getConfig();
+      var locals = {
+        user: user,
+        tweets: filteredTimeline,
+        config: spotlight.getConfig(),
+        smartlist: spotlight.getSmartList().join(', ')
+      };
 
       res.render('index', locals);
     }

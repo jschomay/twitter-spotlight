@@ -85,7 +85,7 @@ header .info-bar.expanded .show-options:after {
   content: " \25b2";
 }
 header .info-bar.expanded .options {
-  max-height: 300px;
+  max-height: 350px;
 }
 header .info-bar a {
   color: #a7a7a7;
@@ -110,6 +110,7 @@ header .info-bar .show-options:after {
 }
 header .info-bar .options {
   display: block;
+  overflow: auto;
   list-style-type: none;
   padding-left: 0;
   font-size: 120%;

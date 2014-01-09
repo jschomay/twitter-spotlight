@@ -52,10 +52,10 @@ block content
             br
             input(type="submit", value="Apply")
         li Your "Smart List:"
-          p TODO
+          p #{smartlist}
 
   section.page
     .stream.home-stream.spotlight
       ol.stream-items
-        each tweet in data
+        each tweet in tweets
           include tweet
