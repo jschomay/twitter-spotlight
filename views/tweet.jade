@@ -16,3 +16,7 @@ li.stream-item
       .tweet-text
         !=tweet.text
       .stream-item-footer
+        if tweet.spotlightReasons
+          ul
+            each reason in tweet.spotlightReasons
+              li #{reason}
