@@ -1,4 +1,4 @@
-li.stream-item 
+li.stream-item
   .tweet(class="#{tweet.minimized ? 'minimized' : ''} #{tweet.classes ? tweet.classes : ''}", data-screen_name="#{tweet.user.screen_name}", data-id_str="#{tweet.id_str}")
     .content
       .stream-item-header      
@@ -16,7 +16,9 @@ li.stream-item
       .tweet-text
         !=tweet.text
       .stream-item-footer
-        if tweet.spotlightReasons
-          ul
-            each reason in tweet.spotlightReasons
-              li #{reason}
+  if tweet.spotlightReasons
+    img.spotlight-indicator(src="/images/logo/drawable-mdpi/ic_launcher.png")
+    ul.reasons
+      | Spotlighted because:
+      each reason in tweet.spotlightReasons
+        li.reason #{reason}

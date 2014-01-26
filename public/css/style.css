@@ -157,45 +157,47 @@ header .info-bar .options li {
 }
 .stream ol.stream-items .stream-item {
   background: #fff;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  position: relative;
 }
 .stream ol.stream-items .stream-item:hover {
   background: #f2f2f2;
 }
-.stream ol.stream-items .tweet {
+.stream ol.stream-items .stream-item .tweet {
   padding: 2% 1.5% 5%;
-  border-bottom: 1px solid #ddd;
   cursor: pointer;
   transition: all 100ms;
 }
-.stream ol.stream-items .tweet .content {
+.stream ol.stream-items .stream-item .tweet .content {
   margin-left: 58px;
 }
-.stream ol.stream-items .tweet .content .stream-item-header {
-  padding-bottom: 1%;
+.stream ol.stream-items .stream-item .tweet .content .stream-item-header {
+  padding-bottom: 1.5%;
 }
-.stream ol.stream-items .tweet .content .stream-item-header .account-group {
+.stream ol.stream-items .stream-item .tweet .content .stream-item-header .account-group {
   text-decoration: none;
   color: #333;
 }
-.stream ol.stream-items .tweet .content .stream-item-header .account-group .avatar {
+.stream ol.stream-items .stream-item .tweet .content .stream-item-header .account-group .avatar {
   float: left;
   margin-top: 0.5%;
   margin-left: -56px;
   width: 48px;
   border-radius: 10%;
 }
-.stream ol.stream-items .tweet .content .stream-item-header .account-group .fullname {
+.stream ol.stream-items .stream-item .tweet .content .stream-item-header .account-group .fullname {
   font-weight: bold;
 }
-.stream ol.stream-items .tweet .content .stream-item-header .account-group .username {
+.stream ol.stream-items .stream-item .tweet .content .stream-item-header .account-group .username {
   font-size: 90%;
   font-weight: normal;
   color: #707070;
 }
-.stream ol.stream-items .tweet .content .stream-item-header .time {
+.stream ol.stream-items .stream-item .tweet .content .stream-item-header .time {
   display: none;
 }
-.stream ol.stream-items .tweet .tweet-text {
+.stream ol.stream-items .stream-item .tweet .tweet-text {
   color: #333;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -203,8 +205,39 @@ header .info-bar .options li {
   line-height: 140%;
   text-decoration: none;
 }
-.stream ol.stream-items .tweet .tweet-text a {
+.stream ol.stream-items .stream-item .tweet .tweet-text a {
   color: #3266a8;
+}
+.stream ol.stream-items .spotlight-indicator {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 25px;
+  border: 1px solid #3266a8;
+  cursor: pointer;
+}
+.stream ol.stream-items .reasons {
+  padding: 0% 2%;
+  background: #2e2e2e;
+  margin: 0% 0 2% 0%;
+  position: relative;
+  color: #eee;
+  font-size: 80%;
+  transition: all 500ms;
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -o-transition: all 500ms;
+  max-height: 0;
+  overflow: hidden;
+}
+.stream ol.stream-items .reasons.reveal {
+  padding: 1% 2%;
+  max-height: 200;
+}
+.stream ol.stream-items .reasons .reason {
+  padding: 0.5%;
+  list-style-type: none;
+  padding-left: 2%;
 }
 .stream.spotlight ol.stream-items .tweet.minimized,
 .stream.hide ol.stream-items .tweet.minimized {

@@ -163,54 +163,89 @@ header
     
     .stream-item
       background white
+      border-bottom 1px solid borderColor
+      overflow hidden
+      position relative
       &:hover
         background darken(white, 5%)
 
-    .tweet
-      padding 2% 1.5% 5%
-      border-bottom 1px solid borderColor
+      .tweet
+        padding 2% 1.5% 5%
+        cursor pointer
+        transition all 100ms
+
+        .content
+          margin-left 58px
+
+          .stream-item-header
+            padding-bottom 1.5%
+
+            .account-group
+              text-decoration none
+              color darkText
+
+              .avatar
+                float left
+                margin-top 0.5%
+                margin-left -56px
+                width 48px
+                border-radius 10%
+
+              .fullname
+                font-weight bold
+
+              .username
+                font-size 90%
+                font-weight normal
+                color lighten(darkText, 30%)
+
+            .time
+              // TODO - display this better
+              display none
+
+        .tweet-text
+          color darkText
+          white-space pre-wrap
+          word-wrap break-word
+          font-size 90%
+          line-height 140%
+          text-decoration none
+
+          a
+            color highlight1
+
+    .spotlight-indicator
+      position absolute
+      top 0px
+      right 0px
+      width 25px
+      border 1px solid highlight1
       cursor pointer
-      transition all 100ms
 
-      .content
-        margin-left 58px
+    .reasons
+      padding 0% 2%
+      background dark
+      margin 0% 0 2% 0%
+      position relative
+      color lightText
+      font-size 80%
+      transition all 500ms
+      -webkit-transition all 500ms
+      -moz-transition all 500ms
+      -o-transition all 500ms
+      // left 100%
+      max-height 0
+      overflow hidden
+      
+      &.reveal
+        padding 1% 2%
+        // left 0%
+        max-height 200
 
-        .stream-item-header
-          padding-bottom 1%
-
-          .account-group
-            text-decoration none
-            color darkText
-
-            .avatar
-              float left
-              margin-top 0.5%
-              margin-left -56px
-              width 48px
-              border-radius 10%
-
-            .fullname
-              font-weight bold
-
-            .username
-              font-size 90%
-              font-weight normal
-              color lighten(darkText, 30%)
-
-          .time
-            // TODO - display this better
-            display none
-
-      .tweet-text
-        color darkText
-        white-space pre-wrap
-        word-wrap break-word
-        font-size 90%
-        line-height 140%
-        text-decoration none
-
-        a
-          color highlight1
+      .reason
+        padding .5%
+        list-style-type none
+        padding-left 2%
 
         
 // minimized tweets styles - spotlight mode

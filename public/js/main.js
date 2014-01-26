@@ -71,6 +71,11 @@ $(function() {
     window.location.reload(true);
   });
 
+  // show reasons
+  $(".spotlight-indicator").click(function(e){
+    $(e.target).siblings('.reasons').toggleClass('reveal');
+  });
+
 });
 
 

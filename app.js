@@ -10,7 +10,7 @@ var privateConfig = require('./private-config'),
     require('node-monkey').start();
     // require('longjohn');
 // live reload, just saving styl files, etc will immidiately reflect changes in browser
-// require('express-livereload')(app, config={});
+require('express-livereload')(app, {});
 
 
 
