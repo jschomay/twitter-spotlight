@@ -323,6 +323,12 @@ header .info-bar .options li {
   padding: 0;
   background: #eee;
 }
+.stream.highlight ol.stream-items .stream-item {
+  background: #d2e0f2;
+}
+.stream.highlight ol.stream-items .stream-item.minimized {
+  background: none;
+}
 .feedback-form textarea {
   width: 100%;
   margin: 5px 0;

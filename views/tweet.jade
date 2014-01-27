@@ -1,4 +1,4 @@
-li.stream-item
+li.stream-item(class="#{tweet.minimized ? 'minimized' : ''}")
   .tweet(class="#{tweet.minimized ? 'minimized' : ''} #{tweet.classes ? tweet.classes : ''}", data-screen_name="#{tweet.user.screen_name}", data-id_str="#{tweet.id_str}")
     .content
       .stream-item-header      
