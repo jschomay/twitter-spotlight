@@ -1,0 +1,43 @@
+extends layout
+
+block content
+
+  header
+    h1.title(title="Twitter Timeline Spotlight intelligently emphasizes relevant tweets, based on your recent activity") Twitter Timeline Spotlight
+      p.tagline See the tweets that matter most
+    img.logo(src="/images/logo/drawable-mdpi/ic_launcher.png")
+    .info-bar 
+
+  section.page
+    .page-content
+      p 
+        i Twitter is great, but it is so noisy!
+      p "Twitter Timeline Spotlight" lets you turn down the noise and pick out only the conversations you want to hear.
+
+      p "Twitter Timeline Spotlight" highlights relevant tweets, based on your recent interactions, right in your home timeline, so you don't miss any important tweets.
+      p.sign-in
+        | Try it out on your own timeline:
+        br
+        a(href="/auth/twitter")
+          img(src="/images/sign-in-with-twitter-gray.png")
+
+      h5 Features
+      ul
+        li Configurable algorithm for different uses:
+          ul
+            li Keep up with event hashtags and new acquaintances at a conference or event
+            li Easily spot conversations with your newest friends
+            li Focus on topics of interest
+        li 4 different "Spotlight" modes
+        li Clean, responsive design for desktop and mobile
+
+      p.credits Built with node.js by 
+        a(href="http://jeffschomay.com", target="_blank") Jeff Schomay
+        br
+        |<a href="https://twitter.com/jschomay" class="twitter-follow-button" data-show-count="false">Follow @jschomay</a>
+        |<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      p Source code available on 
+        a(href="https://github.com/jschomay/twitter-spotlight", target="_blank") github
+        |.
+        br
+        |Feedback/forks welcome.

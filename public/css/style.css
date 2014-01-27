@@ -146,6 +146,40 @@ header .info-bar .options li {
     margin-top: 77px;
   }
 }
+.page-content {
+  background: #fff;
+  padding: 10px 20px;
+  border-bottom: 2px solid #2e2e2e;
+}
+.page-content .sign-in {
+  background: #eee;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin: 30 0;
+  text-align: center;
+  font-size: 90%;
+  font-weight: bold;
+}
+.page-content .sign-in a {
+  display: block;
+  margin-top: 10px;
+}
+.page-content h5 {
+  margin-bottom: 10px;
+}
+.page-content ul ul {
+  margin: 10px;
+  padding-left: 20px;
+}
+.page-content ul ul li {
+  list-style-type: disc;
+  margin-left: 10px;
+}
+.page-content .credits {
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+  padding-top: 20px;
+}
 .stream {
   background: #eee;
 }

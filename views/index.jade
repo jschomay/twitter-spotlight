@@ -16,51 +16,48 @@ block content
         a(href="/logout") Log out
       ul.options
         li
-          p 
-          i Twitter is great, but it is so noisy!
-          p "Twitter Timeline Spotlight" lets you turn down the noise and pick out only the conversations you want to hear.
-
-          p "Twitter Timeline Spotlight" highlights relevant tweets, based on your recent interactions, right in your home timeline, so you don't miss any important tweets.
+          p Turn down the noise and pick out only the conversations you want to hear.
+          p
+            form Spotlight mode: 
+              select(name="spotlight-mode")
+                option(value="spotlight") Spotlight
+                option(value="hide") Hide
+                option(value="none") None
+          p
+            form(class="config") Spotlight tweets... <br>
+              |With hashtags I used in the last 
+              input(name="hashtags", value="#{config.recency.hashtags}", type="text", size="2") 
+              | days
+              br
+              |From people I interacted with in the last 
+              input(name="usersYouInteractWith", value="#{config.recency.usersYouInteractWith}", type="text", size="2") 
+              | days
+              br
+              |From people who interacted with me in the last 
+              input(name="usersInteractingWithYou", value="#{config.recency.usersInteractingWithYou}", type="text", size="2") 
+              | days
+              br
+              |From the last  
+              input(name="followed", value="#{config.recency.followed}", type="text", size="2") 
+              | people you followed
+              br
+              |From the last 
+              input(name="followers", value="#{config.recency.followers}", type="text", size="2") 
+              | friends who followed you back
+              br
+              input(type="submit", value="Apply")
+        li Your "Smart List:"
+          p #{smartlist}
         li Built with node.js by 
           a(href="http://jeffschomay.com", target="_blank") Jeff Schomay
-          | 
+          br
           |<a href="https://twitter.com/jschomay" class="twitter-follow-button" data-show-count="false">Follow @jschomay</a>
           |<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
           |<br>Source code available on 
           a(href="https://github.com/jschomay/twitter-spotlight", target="_blank") github
           br
           |Feedback/forks welcome
-        li
-          form Spotlight mode: 
-            select(name="spotlight-mode")
-              option(value="spotlight") Spotlight
-              option(value="hide") Hide
-              option(value="none") None
-        li
-          form(class="config") Spotlight tweets: <br>
-            |With hashtags I used in the last 
-            input(name="hashtags", value="#{config.recency.hashtags}", type="text", size="2") 
-            | days
-            br
-            |From people I interacted with in the last 
-            input(name="usersYouInteractWith", value="#{config.recency.usersYouInteractWith}", type="text", size="2") 
-            | days
-            br
-            |From people who interacted with me in the last 
-            input(name="usersInteractingWithYou", value="#{config.recency.usersInteractingWithYou}", type="text", size="2") 
-            | days
-            br
-            |From the last  
-            input(name="followed", value="#{config.recency.followed}", type="text", size="2") 
-            | people you followed
-            br
-            |From the last 
-            input(name="followers", value="#{config.recency.followers}", type="text", size="2") 
-            | friends who followed you back
-            br
-            input(type="submit", value="Apply")
-        li Your "Smart List:"
-          p #{smartlist}
+
 
   section.page
     .stream.home-stream.spotlight

@@ -10,7 +10,7 @@ var privateConfig = require('./private-config'),
     require('node-monkey').start();
     // require('longjohn');
 // live reload, just saving styl files, etc will immidiately reflect changes in browser
-require('express-livereload')(app, {});
+// require('express-livereload')(app, {});
 
 
 
@@ -116,7 +116,7 @@ app.get('/login', function(req, res){
     res.redirect('/');
   }
   else {
-    res.send('Welcome to Twitter Timeline Spotlight.  Please <a href="/auth/twitter">Sign in with Twitter</a> to use.');
+    res.render('login');
   }
 });
 
