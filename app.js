@@ -141,7 +141,8 @@ app.get('/logout', function (req, res){
 
 app.get('/auth/twitter', function(req, res){
   // plug requested host in here to keep it dynamic (dev vs prod, and testing on other devices)
-  oa._authorize_callback = "http://"+req.host+":"+port+"/auth/twitter/callback",
+  var url = process.env.DEV ? req.host+":"+port : req.host;
+  oa._authorize_callback = "http://"+url+"/auth/twitter/callback",
   oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
     if (error) {
       util.puts(error);
