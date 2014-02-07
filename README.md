@@ -1,4 +1,4 @@
-A simple node.js based Twitter client to experiment with a specific home timeline interface feature:
+A simple node.js based Twitter client to experiment with a specific home timeline interface feature.  http://twitter-timeline-spotlight.herokuapp.com/
 
 Twitter Timeline Spotlight
 ==========================
@@ -18,6 +18,8 @@ Enter Twitter Timeline Spotlight.  It does two things:
 1. __"Smart list"__ - by analyzing your recent tweets, interactions, and connections, the algorithm determines what tweets you will be most interested in.
 
 2. __"Spotlight view"__ - modifies your normal home timeline, leaving tweets that match your smart list untouched, but shrinking all the other tweets to single truncated lines with minimized profile pictures.  This way you can still see all the tweets in your feed (and expand any minimized tweets), but the tweets you care about stick out.
+
+![Screenshot](https://pbs.twimg.com/media/BfBmndvCIAAvNsr.png:large "Screenshot")
 
 
 Execution/Algorithm
@@ -41,11 +43,19 @@ Once the smart list is built (either generated each time, or cached somewhere), 
 How to use
 ----------
 
-Live demo at: comingsoon.com... (sorry, no live demo yet)
+Live demo at: http://twitter-timeline-spotlight.herokuapp.com/
 
-Fork and run it yourself.  You'll need to create your own twitter app on their dev site and plug in your own keys in `private-config.js`.
+Or fork and run it yourself.  
+You'll need to create your own twitter app and also the following enviroment variables:
 
-More detail to follow...
+```
+CONSUMER_KEY=YOUR-TWITTER-APP-CONSUMER-KEY
+CONSUMER_SECRET=YOUR-TWITTER-APP-CONSUMER-SECRET
+SESSION_SECRET=YOUR-SESSION-SECRET
+SMPT_USER=YOUR-GMAIL-USER-NAME
+SMPT_PASSWORD=BASE-64-ENCODED-GMAIL-PASSWORD
+```
+You can put them in a `private-config` file and then run `npm run-script start-local` if you like.
 
 
 Further development
