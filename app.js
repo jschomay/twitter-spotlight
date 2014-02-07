@@ -1,5 +1,11 @@
-var privateConfig = require('./private-config'),
-    OAuth         = require('oauth').OAuth,
+var privateConfig = {
+  consumerKey: process.env.CONSUMER_KEY,
+  consumerSecret: process.env.CONSUMER_SECRET,
+  sessionSecret: process.env.SESSION_SECRET,
+  smpt: process.env.SMPT
+}
+
+var OAuth         = require('oauth').OAuth,
     util          = require('util'),
     express       = require('express'),
     async         = require('async'),

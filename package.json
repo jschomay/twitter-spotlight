@@ -4,7 +4,8 @@
   "description": "See the tweets in your timeline that matter most",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-local": "env $(cat private-config) nodemon app.js"
   },
   "repository": "",
   "author": "Jeff Schomay",
@@ -19,7 +20,8 @@
   },
   "devDependencies": {
     "node-monkey": "~0.2.8",
-    "express-livereload": "0.0.24"
+    "express-livereload": "0.0.24",
+    "nodemon": "~1.0.14"
   },
   "readmeFilename": "README.md"
 }
