@@ -13,11 +13,14 @@ var OAuth         = require('oauth').OAuth,
     spotlight     = require('./lib/spotlight'),
     app           = express(),
     nodemailer    = require("nodemailer");
-    // pipe console log to browser
-    require('node-monkey').start();
-    // require('longjohn');
-// live reload, just saving styl files, etc will immidiately reflect changes in browser
-// require('express-livereload')(app, {});
+    
+if(process.env.DEV) {
+  // pipe console log to browser
+  require('node-monkey').start();
+  // require('longjohn');
+  // live reload, just saving styl files, etc will immidiately reflect changes in browser
+  // require('express-livereload')(app, {});
+}
 
 
 
@@ -193,7 +196,6 @@ app.post('/feedback', function(req, res){
     subject: 'Twitter Timeline Spotlight feedback',
     html: htmlEntities(req.body.feedback),
   };
-  console.log(privateConfig.smptUser)
   function htmlEntities(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
