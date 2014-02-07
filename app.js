@@ -2,7 +2,8 @@ var privateConfig = {
   consumerKey: process.env.CONSUMER_KEY,
   consumerSecret: process.env.CONSUMER_SECRET,
   sessionSecret: process.env.SESSION_SECRET,
-  smpt: process.env.SMPT
+  smptUser: process.env.SMPT_USER,
+  smptPassword: process.env.SMPT_PASSWORD
 }
 
 var OAuth         = require('oauth').OAuth,
@@ -180,18 +181,19 @@ app.post('/feedback', function(req, res){
   var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
-      user: "jschomay@gmail.com",
-      pass: new Buffer(privateConfig.smpt, 'base64').toString('ascii')
+      user: privateConfig.smptUser,
+      pass: new Buffer(privateConfig.smptPassword, 'base64').toString('ascii')
     }
   });
 
   // setup e-mail data with unicode symbols
   var mailOptions = {
     from: 'Twitter Timeline Spotlight <noreply@twittertimelinespotlight.com>',
-    to: 'jschomay@gmail.com',
+    to: privateConfig.smptUser,
     subject: 'Twitter Timeline Spotlight feedback',
     html: htmlEntities(req.body.feedback),
   };
+  console.log(privateConfig.smptUser)
   function htmlEntities(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
