@@ -1,10 +1,11 @@
+console.log('STARTING APP')
 var privateConfig = {
   consumerKey: process.env.CONSUMER_KEY,
   consumerSecret: process.env.CONSUMER_SECRET,
   sessionSecret: process.env.SESSION_SECRET,
   smptUser: process.env.SMPT_USER,
   smptPassword: process.env.SMPT_PASSWORD
-}
+};
 
 var OAuth         = require('oauth').OAuth,
     util          = require('util'),
@@ -15,8 +16,10 @@ var OAuth         = require('oauth').OAuth,
     nodemailer    = require("nodemailer");
     
 if(process.env.DEV) {
+  console.log('DEV')
+
   // pipe console log to browser
-  require('node-monkey').start();
+  // require('node-monkey').start();
   // require('longjohn');
   // live reload, just saving styl files, etc will immidiately reflect changes in browser
   // require('express-livereload')(app, {});
@@ -34,6 +37,7 @@ var oa = new OAuth(
   "HMAC-SHA1"
 );
 
+console.log('AFTER OAUTH')
 
 
 app.configure(function(){
@@ -52,6 +56,7 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
+console.log('AFTER CONFIGURE')
 
 
 app.get('/', authBounce, function(req, res){
