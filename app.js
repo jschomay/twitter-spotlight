@@ -12,7 +12,8 @@ var OAuth         = require('oauth').OAuth,
     async         = require('async'),
     spotlight     = require('./lib/spotlight'),
     app           = express(),
-    nodemailer    = require("nodemailer");
+    nodemailer    = require("nodemailer"),
+    port          = process.env.PORT || 3000;
     
 if(process.env.DEV) {
 
@@ -140,7 +141,7 @@ app.get('/logout', function (req, res){
 
 app.get('/auth/twitter', function(req, res){
   // plug requested host in here to keep it dynamic (dev vs prod, and testing on other devices)
-  oa._authorize_callback = "http://"+req.host+":3000/auth/twitter/callback",
+  oa._authorize_callback = "http://"+req.host+":"+port+"/auth/twitter/callback",
   oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
     if (error) {
       util.puts(error);
@@ -243,5 +244,5 @@ function callTwitterApi(resourceUrl, paramsString, req, cb) {
 }
 
 
-app.listen(process.env.PORT || 3000);
-util.puts('Listening on port 3000');
+app.listen(port);
+util.puts('Listening on port '+port);
