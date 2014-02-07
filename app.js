@@ -1,4 +1,3 @@
-console.log('STARTING APP')
 var privateConfig = {
   consumerKey: process.env.CONSUMER_KEY,
   consumerSecret: process.env.CONSUMER_SECRET,
@@ -16,7 +15,6 @@ var OAuth         = require('oauth').OAuth,
     nodemailer    = require("nodemailer");
     
 if(process.env.DEV) {
-  console.log('DEV')
 
   // pipe console log to browser
   // require('node-monkey').start();
@@ -37,7 +35,6 @@ var oa = new OAuth(
   "HMAC-SHA1"
 );
 
-console.log('AFTER OAUTH')
 
 
 app.configure(function(){
@@ -56,7 +53,6 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-console.log('AFTER CONFIGURE')
 
 
 app.get('/', authBounce, function(req, res){
@@ -247,5 +243,5 @@ function callTwitterApi(resourceUrl, paramsString, req, cb) {
 }
 
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 util.puts('Listening on port 3000');
