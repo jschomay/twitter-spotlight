@@ -164,6 +164,16 @@ header .info-bar .options li {
   display: block;
   margin-top: 10px;
 }
+.page-content img.screenshot {
+  margin: auto;
+  display: block;
+  border: 1px solid #ddd;
+}
+@media all and (max-width: 950px) {
+  .page-content img.screenshot {
+    width: 100%;
+  }
+}
 .page-content h5 {
   margin-bottom: 10px;
 }
