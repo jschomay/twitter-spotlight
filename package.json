@@ -1,6 +1,9 @@
 {
   "name": "twitter_spotlight",
   "version": "0.0.0",
+    "engines": {
+    "node": "4.8.4"
+  },
   "description": "See the tweets in your timeline that matter most",
   "main": "index.js",
   "scripts": {
